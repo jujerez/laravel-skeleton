@@ -3,7 +3,11 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
+
+// Public route
+Route::get('/', [SiteController::class, 'welcome'])->name('welcome');
 
 // Guest routes
 Route::middleware('guest')->group(function () {
@@ -16,7 +20,7 @@ Route::middleware('guest')->group(function () {
 
 // Authenticated routes
 Route::middleware('auth')->group(function () {
-    Route::get('/', DashboardController::class)->name('dashboard');
+    Route::get('/admin', DashboardController::class)->name('dashboard');
 
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });
