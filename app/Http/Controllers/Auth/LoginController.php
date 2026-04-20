@@ -17,6 +17,7 @@ class LoginController extends Controller
     {
         return view('auth.login');
     }
+
     /**
      * Handle the login request.
      */
@@ -33,7 +34,9 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard'));
+        $destination = Auth::user()->hasRole('client') ? route('welcome') : route('dashboard');
+
+        return redirect()->intended($destination);
     }
 
     /**

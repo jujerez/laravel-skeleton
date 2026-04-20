@@ -29,7 +29,7 @@
                 </a>
 
                 <ul class="sidebar-nav">
-                    @yield('sidebar-nav')
+                    @include('layouts.admin._sidebar')
                 </ul>
             </div>
         </nav>
@@ -46,7 +46,7 @@
                     <ul class="navbar-nav navbar-align">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                                <img src="{{ asset('assets/static/img/avatars/avatar.jpg') }}" class="avatar img-fluid rounded me-1" alt="{{ auth()->user()?->name }}" />
+                                <img src="{{ isset($user) ? $user->avatarUrl() : asset('assets/static/img/avatars/avatar.jpg') }}" class="avatar img-fluid rounded me-1" alt="{{ auth()->user()?->name }}" />
                                 <span class="text-dark">{{ auth()->user()?->name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">

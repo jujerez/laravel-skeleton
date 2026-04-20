@@ -1,0 +1,42 @@
+@extends('layouts.admin.app')
+
+@section('title', 'Editar usuario — ' . config('app.name'))
+
+@section('content')
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h3 mb-0"><strong>Editar</strong> Usuario</h1>
+        <a href="{{ route('admin.users.index') }}" class="btn btn-outline-secondary">
+            <i class="align-middle" data-feather="arrow-left"></i> Volver
+        </a>
+    </div>
+
+    <form method="POST" action="{{ route('admin.users.update', $user) }}" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <div class="row align-items-start">
+            <div class="col-12 col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        @include('admin.users._form', ['user' => $user])
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4 mt-3 mt-lg-0">
+                @include('admin.users._avatar', ['user' => $user])
+            </div>
+        </div>
+    </form>
+@endsection
