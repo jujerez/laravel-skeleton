@@ -12,9 +12,9 @@
     <link rel="shortcut icon" href="{{ asset('assets/static/img/icons/icon-48x48.png') }}" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    {{-- <link href="{{ asset('template/adminkit-main/static/css/app.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('assets/site/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/datatables-1.13.1/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/static/css/app.css') }}" rel="stylesheet">
-
     @stack('styles')
 </head>
 
@@ -27,7 +27,6 @@
                 <a class="sidebar-brand" href="{{ Route::has('dashboard') ? route('dashboard') : url('/') }}">
                     <span class="align-middle">{{ config('app.name') }}</span>
                 </a>
-
                 <ul class="sidebar-nav">
                     @include('layouts.admin._sidebar')
                 </ul>
@@ -85,8 +84,13 @@
 
         </div>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="{{ asset('assets/static/js/app.js') }}"></script>
+    <script src="{{ asset('assets/vendor/jquery.form/jquery.form.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/datatables-1.13.1/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/datatables-1.13.1/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('assets/js/layout.admin.js') }}"></script>
+    
 
     @stack('scripts')
 </body>

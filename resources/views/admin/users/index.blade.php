@@ -18,9 +18,9 @@
     @endif
 
     <div class="card">
-        <div class="card-body p-0">
+        <div class="card-body p-3">
             <div class="table-responsive">
-                <table class="table table-hover mb-0">
+                <table class="table table-hover mb-0 data-table">
                     <thead>
                         <tr>
                             <th>#</th>
