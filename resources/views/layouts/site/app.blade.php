@@ -32,7 +32,7 @@
                 <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
               </li>
               <li class="nav-item">
-                <form method="POST" action="{{ route('logout') }}">
+                <form method="POST" action="{{ route('logout') }}" data-ajax="false">
                   @csrf
                   <button type="submit" class="nav-link btn btn-link p-0">Log out</button>
                 </form>
@@ -54,7 +54,19 @@
       @yield('content')
     </main>
 
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="{{ asset('assets/site/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/jquery.form/jquery.form.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/sweetalert-7.0.5/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/ajax-form.js') }}"></script>
+    <script src="{{ asset('assets/js/site.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('form:not([data-ajax=false])').each(function() {
+                CommonFunctions.setupAjaxForm(this);
+            });
+        });
+    </script>
 
     @stack('scripts')
   </body>
