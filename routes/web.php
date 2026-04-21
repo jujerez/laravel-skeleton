@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
@@ -20,7 +21,11 @@ Route::middleware('guest')->group(function () {
 
 // Authenticated routes
 Route::middleware('auth')->group(function () {
-    Route::get('/admin', DashboardController::class)->name('dashboard');
+    Route::get('/admin', DashboardController::class)->middleware('dashboard.access')->name('dashboard');
+
+    Route::middleware('superadmin.access')->prefix('admin')->name('admin.')->group(function () {
+        Route::resource('users', UserController::class)->except('show');
+    });
 
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });
