@@ -71,4 +71,9 @@ $(document).ready(function() {
         
         $table.DataTable(options);
     });
+
+    // Auto-initialize all forms that don't have data-ajax="false"
+    $('form:not([data-ajax=false])').each(function() {
+        CommonFunctions.setupAjaxForm(this);
+    });
 });

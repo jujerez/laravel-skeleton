@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="{{ asset('assets/site/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/datatables-1.13.1/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/sweetalert-7.0.5/sweetalert2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/static/css/app.css') }}" rel="stylesheet">
     @stack('styles')
 </head>
@@ -50,7 +51,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <div class="dropdown-divider"></div>
-                                <form method="POST" action="{{ Route::has('logout') ? route('logout') : url('/logout') }}">
+                                <form method="POST" action="{{ Route::has('logout') ? route('logout') : url('/logout') }}" data-ajax="false">
                                     @csrf
                                     <button type="submit" class="dropdown-item">
                                         <i class="align-middle me-1" data-feather="log-out"></i> Log out
@@ -87,10 +88,12 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="{{ asset('assets/static/js/app.js') }}"></script>
     <script src="{{ asset('assets/vendor/jquery.form/jquery.form.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/sweetalert-7.0.5/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/ajax-form.js') }}"></script>
+    <script src="{{ asset('assets/js/site.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables-1.13.1/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables-1.13.1/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/js/layout.admin.js') }}"></script>
-    
 
     @stack('scripts')
 </body>

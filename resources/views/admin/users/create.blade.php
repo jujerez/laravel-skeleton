@@ -10,7 +10,7 @@
         </a>
     </div>
 
-    <form method="POST" action="{{ route('admin.users.store') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('admin.users.store') }}" enctype="multipart/form-data" data-callback="formCallback">
         @csrf
 
         @if ($errors->any())
@@ -39,3 +39,14 @@
         </div>
     </form>
 @endsection
+@push('scripts')
+<script>
+function formCallback(data) {
+    CommonFunctions.notificationSuccessStayOrBack(
+        data.message,
+        data.entryUrl,
+        "{{ route('admin.users.index') }}"
+    );
+}
+</script>
+@endpush

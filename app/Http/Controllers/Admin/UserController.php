@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\AjaxForm;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreUserRequest;
 use App\Http\Requests\Admin\UpdateUserRequest;
 use App\Models\User;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
@@ -16,7 +17,7 @@ class UserController extends Controller
 {
     public function index(): View
     {
-        $users = User::with('roles')->orderBy('name')->paginate(20);
+        $users = User::with('roles')->orderBy('name')->get();
 
         return view('admin.users.index', compact('users'));
     }
@@ -28,7 +29,7 @@ class UserController extends Controller
         return view('admin.users.create', compact('roles'));
     }
 
-    public function store(StoreUserRequest $request): RedirectResponse
+    public function store(StoreUserRequest $request): JsonResponse
     {
         $data = $request->safe()->only('name', 'username', 'email', 'phone', 'password', 'is_active');
 
@@ -40,7 +41,11 @@ class UserController extends Controller
 
         $this->syncRoles($user, $request->input('roles', []));
 
-        return redirect()->route('admin.users.index')->with('success', 'Usuario creado correctamente.');
+        // return redirect()->route('admin.users.index')->with('success', 'Usuario creado correctamente.');
+        return AjaxForm::custom([
+            'entryUrl' => route('admin.users.edit', $user),
+            'message' => 'Usuario creado correctamente.',
+        ])->jsonResponse();
     }
 
     public function edit(User $user): View
@@ -50,7 +55,7 @@ class UserController extends Controller
         return view('admin.users.edit', compact('user', 'roles'));
     }
 
-    public function update(UpdateUserRequest $request, User $user): RedirectResponse
+    public function update(UpdateUserRequest $request, User $user): JsonResponse
     {
         $data = $request->safe()->only('name', 'username', 'email', 'phone', 'is_active');
 
@@ -69,14 +74,17 @@ class UserController extends Controller
 
         $this->syncRoles($user, $request->input('roles', []));
 
-        return redirect()->route('admin.users.index')->with('success', 'Usuario actualizado correctamente.');
+        return AjaxForm::custom([
+            'entryUrl' => route('admin.users.edit', $user),
+            'message' => 'Usuario actualizado correctamente.',
+        ])->jsonResponse();
     }
 
-    public function destroy(User $user): RedirectResponse
+    public function destroy(User $user): JsonResponse
     {
         $user->delete();
 
-        return redirect()->route('admin.users.index')->with('success', 'Usuario eliminado correctamente.');
+        return AjaxForm::redirection(route('admin.users.index'))->jsonResponse();
     }
 
     /**

@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="{{ asset('assets/static/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/sweetalert-7.0.5/sweetalert2.min.css') }}" rel="stylesheet">
 
     @stack('styles')
 </head>
@@ -30,7 +31,19 @@
         </div>
     </main>
 
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="{{ asset('assets/static/js/app.js') }}"></script>
+    <script src="{{ asset('assets/vendor/jquery.form/jquery.form.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/sweetalert-7.0.5/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/ajax-form.js') }}"></script>
+    <script src="{{ asset('assets/js/site.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('form:not([data-ajax=false])').each(function() {
+                CommonFunctions.setupAjaxForm(this);
+            });
+        });
+    </script>
 
     @stack('scripts')
 </body>
