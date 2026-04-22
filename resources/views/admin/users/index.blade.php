@@ -5,7 +5,7 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1 class="h3 mb-0"><strong>Gestión</strong> de Usuarios</h1>
-        <a href="{{ route('admin.users.create') }}" class="btn btn-primary">
+        <a href="{{ route('admin.users.create') }}" class="btn btn-outline-primary">
             <i class="align-middle" data-feather="plus"></i> Nuevo usuario
         </a>
     </div>
@@ -18,7 +18,7 @@
     @endif
 
     <div class="card">
-        <div class="card-body p-3">
+        <div class="card-body p-4">
             <div class="table-responsive">
                 <table class="table table-hover mb-0 data-table">
                     <thead>

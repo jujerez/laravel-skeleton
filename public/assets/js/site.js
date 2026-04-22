@@ -30,13 +30,13 @@ CommonFunctions.notificationSuccessRedirect = function(text, url) {
     });
 };
 
-// Shows a success with two buttons: "Keep editing" or "Back to listing"
+// Shows a success with two buttons: "Seguir editando" or "Volver al listado"
 CommonFunctions.notificationSuccessStayOrBack = function(text, stayUrl, backUrl) {
     var $html = $(
         '<div>' + text +
         '<div class="swal2-custombuttons mt-3">' +
-        '<button class="btn btn-lg btn-success mx-2" data-url="' + stayUrl + '">Keep editing</button>' +
-        '<button class="btn btn-lg btn-success mx-2" data-url="' + backUrl  + '">Back to listing</button>' +
+        '<button class="btn btn-lg btn-success mx-2" data-url="' + stayUrl + '">Seguir editando</button>' +
+        '<button class="btn btn-lg btn-success mx-2" data-url="' + backUrl  + '">Volver al listado</button>' +
         '</div></div>'
     );
     $(document).on('click', '.swal2-custombuttons button', function() {
@@ -45,7 +45,7 @@ CommonFunctions.notificationSuccessStayOrBack = function(text, stayUrl, backUrl)
     });
     swal({
         type: 'success',
-        title: 'Success',
+        title: 'Éxito',
         allowEscapeKey: false,
         allowOutsideClick: false,
         allowEnterKey: false,
