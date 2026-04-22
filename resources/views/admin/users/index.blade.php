@@ -23,7 +23,6 @@
                 <table class="table table-hover mb-0 data-table">
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>Nombre</th>
                             <th>Correo electrónico</th>
                             <th>Roles</th>
@@ -35,7 +34,6 @@
                     <tbody>
                         @forelse ($users as $user)
                             <tr>
-                                <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>

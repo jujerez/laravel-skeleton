@@ -20,6 +20,23 @@ $(document).ready(function() {
             ordering: !isReportsTable,
             stateSave: stateSave,
             autoWidth: false,
+            language: {
+                search: 'Buscar:',
+                lengthMenu: 'Mostrar _MENU_ registros',
+                info: 'Mostrando _START_ a _END_ de _TOTAL_ registros',
+                infoEmpty: 'Mostrando 0 a 0 de 0 registros',
+                infoFiltered: '(filtrado de _MAX_ registros totales)',
+                zeroRecords: 'No se encontraron resultados',
+                emptyTable: 'No hay datos disponibles',
+                loadingRecords: 'Cargando...',
+                processing: 'Procesando...',
+                paginate: {
+                    first: 'Primero',
+                    last: 'Último',
+                    next: 'Siguiente',
+                    previous: 'Anterior',
+                },
+            },
             aoColumnDefs: [
                 {
                     'bSortable' : false,
